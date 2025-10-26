@@ -62,3 +62,9 @@ C:\Users\marce\CelularApi\obj\Debug\net9.0\refint\CelularApi.dll
 C:\Users\marce\CelularApi\obj\Debug\net9.0\CelularApi.pdb
 C:\Users\marce\CelularApi\obj\Debug\net9.0\CelularApi.genruntimeconfig.cache
 C:\Users\marce\CelularApi\obj\Debug\net9.0\ref\CelularApi.dll
+C:\Users\marce\CelularApi\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\marce\CelularApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\marce\CelularApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\marce\CelularApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\marce\CelularApi\obj\Debug\net9.0\CelularApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\marce\CelularApi\obj\Debug\net9.0\CelularApi.sourcelink.json
