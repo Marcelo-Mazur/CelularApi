@@ -1,0 +1,36 @@
+GET http://localhost:5209/celulares
+
+###
+
+GET http://localhost:5209/celulares/2
+
+###
+
+POST http://localhost:5209/celulares/
+Content-Type: application/json
+
+{
+    "Marca": "OnePlus",
+    "Modelo": "9 Pro",
+    "Memoria": "12",
+    "Armazenamento": "256",
+    "Preco": 969.99
+}
+
+###
+
+PUT http://localhost:5209/celulares/1
+Content-Type: application/json
+
+{
+    "Marca": "Samsung",
+    "Modelo": "Galaxy S24",
+    "Memoria": "8",
+    "Armazenamento": "512",
+    "Preco": 2.998
+}
+
+###
+
+DELETE http://localhost:5209/celulares/21
+
