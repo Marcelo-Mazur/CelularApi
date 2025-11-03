@@ -1,7 +1,17 @@
 using CelularApi;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PermitirTudo",
+        policy => policy
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=celulares.db"));
@@ -17,29 +27,51 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//GET ALL
+app.UseCors("PermitirTudo");
+
 app.MapGet("/celulares", async (AppDbContext db) =>
 {
     return await db.Celulares.ToListAsync();
 });
 
-//GET POR ID
 app.MapGet("/celulares/{id}", async (int id, AppDbContext db) =>
 {
     var celular = await db.Celulares.FindAsync(id);
     return celular is not null ? Results.Ok(celular) : Results.NotFound("Celular não encontrado");
 });
 
-//POST
-app.MapPost("/celulares", async (AppDbContext db, Celular novoCelular) =>
+app.MapPost("/celulares/upload", async ([FromForm] CelularForm form, AppDbContext db) =>
 {
-    db.Celulares.Add(novoCelular);
+    var celular = new Celular
+    {
+        Marca = form.Marca,
+        Modelo = form.Modelo,
+        Memoria = form.Memoria,
+        Armazenamento = form.Armazenamento,
+        Preco = form.Preco
+    };
+
+    if (form.Imagem != null)
+    {
+        var fileName = Guid.NewGuid() + Path.GetExtension(form.Imagem.FileName);
+        var path = Path.Combine("wwwroot/imagens", fileName);
+
+        using var stream = new FileStream(path, FileMode.Create);
+        await form.Imagem.CopyToAsync(stream);
+
+        celular.ImagemUrl = $"/imagens/{fileName}";
+    }
+    else if (!string.IsNullOrWhiteSpace(form.ImagemUrl))
+    {
+        celular.ImagemUrl = form.ImagemUrl;
+    }
+
+    db.Celulares.Add(celular);
     await db.SaveChangesAsync();
 
-    return Results.Created($"O celular {novoCelular.Marca}, {novoCelular.Modelo} foi adicionado com sucesso", novoCelular);
+    return Results.Created($"/celulares/{celular.Id}", celular);
 });
 
-//PUT
 app.MapPut("/celulares/{id}", async (int id, AppDbContext db, Celular celularAtualizado) =>
 {
     var celular = await db.Celulares.FindAsync(id);
@@ -57,7 +89,6 @@ app.MapPut("/celulares/{id}", async (int id, AppDbContext db, Celular celularAtu
     return Results.Ok(celular);
 });
 
-//DELETE
 app.MapDelete("/celulares/{id}", async (int id, AppDbContext db) =>
 {
     var celular = await db.Celulares.FindAsync(id);
@@ -70,5 +101,5 @@ app.MapDelete("/celulares/{id}", async (int id, AppDbContext db) =>
     return Results.NoContent();
 });
 
-
+app.UseStaticFiles();
 app.Run();

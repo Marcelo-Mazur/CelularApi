@@ -25,6 +25,9 @@ namespace CelularApi.Migrations
                     b.Property<int>("Armazenamento")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ImagemUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Marca")
                         .HasColumnType("TEXT");
 
