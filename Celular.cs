@@ -9,6 +9,10 @@ namespace CelularApi
     {
         public int Id { get; set; }
 
+        public string? ImagemUrl { get; set; }
+
+        public IFormFile? Imagem { get; set; }
+
         public string? Marca { get; set; }
 
         public string? Modelo { get; set; }

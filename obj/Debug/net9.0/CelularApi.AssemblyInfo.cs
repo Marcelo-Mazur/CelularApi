@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CelularApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5dacaaaf19a6b9e2ff18142df4f6e0449a81974a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c533212b1034a8319e71b5ca705732b034a2494b")]
 [assembly: System.Reflection.AssemblyProductAttribute("CelularApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CelularApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
