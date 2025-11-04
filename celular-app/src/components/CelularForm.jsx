@@ -10,7 +10,7 @@ export default function CelularForm({ fetchCelulares }) {
     preco: ""
   });
 
-  const [imagem, setImagem] = useState(null);
+  const [imagem, setImagem] = useState(undefined);
   const [erro, setErro] = useState("");
 
   const handleChange = (e) => {
@@ -72,7 +72,7 @@ export default function CelularForm({ fetchCelulares }) {
       armazenamento: "",
       preco: ""
     });
-    setImagem(null);
+    setImagem("");
     fetchCelulares();
   };
 
