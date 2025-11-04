@@ -4,7 +4,9 @@ export default function CelularCard({ celular, onClick }) {
             <img
                 src={
                     celular.imagemUrl
-                        ? `http://localhost:5209${celular.imagemUrl}`
+                        ? celular.imagemUrl.startsWith("http")
+                            ? celular.imagemUrl
+                            : `http://localhost:5209${celular.imagemUrl}`
                         : "http://localhost:5209/imagens/placeholder.png"
                 }
                 alt={`${celular.marca} ${celular.modelo}`}

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace CelularApi
 
         public string? ImagemUrl { get; set; }
 
+        [NotMapped]
         public IFormFile? Imagem { get; set; }
 
         public string? Marca { get; set; }

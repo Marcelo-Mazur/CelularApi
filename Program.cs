@@ -42,35 +42,45 @@ app.MapGet("/celulares/{id}", async (int id, AppDbContext db) =>
 
 app.MapPost("/celulares/upload", async ([FromForm] CelularForm form, AppDbContext db) =>
 {
-    var celular = new Celular
+    try
     {
-        Marca = form.Marca,
-        Modelo = form.Modelo,
-        Memoria = form.Memoria,
-        Armazenamento = form.Armazenamento,
-        Preco = form.Preco
-    };
+        Directory.CreateDirectory("wwwroot/imagens");
 
-    if (form.Imagem != null)
-    {
-        var fileName = Guid.NewGuid() + Path.GetExtension(form.Imagem.FileName);
-        var path = Path.Combine("wwwroot/imagens", fileName);
+        var celular = new Celular
+        {
+            Marca = form.Marca,
+            Modelo = form.Modelo,
+            Memoria = form.Memoria,
+            Armazenamento = form.Armazenamento,
+            Preco = form.Preco
+        };
 
-        using var stream = new FileStream(path, FileMode.Create);
-        await form.Imagem.CopyToAsync(stream);
+        if (form.Imagem != null && form.Imagem.Length > 0)
+        {
+            var fileName = Guid.NewGuid() + Path.GetExtension(form.Imagem.FileName);
+            var path = Path.Combine("wwwroot/imagens", fileName);
 
-        celular.ImagemUrl = $"/imagens/{fileName}";
+            using var stream = new FileStream(path, FileMode.Create);
+            await form.Imagem.CopyToAsync(stream);
+
+            celular.ImagemUrl = $"/imagens/{fileName}";
+        }
+        else if (!string.IsNullOrWhiteSpace(form.ImagemUrl))
+        {
+            celular.ImagemUrl = form.ImagemUrl;
+        }
+
+        db.Celulares.Add(celular);
+        await db.SaveChangesAsync();
+
+        return Results.Created($"/celulares/{celular.Id}", celular);
     }
-    else if (!string.IsNullOrWhiteSpace(form.ImagemUrl))
+    catch (Exception ex)
     {
-        celular.ImagemUrl = form.ImagemUrl;
+        Console.WriteLine($"Erro no upload: {ex.Message}");
+        return Results.StatusCode(500);
     }
-
-    db.Celulares.Add(celular);
-    await db.SaveChangesAsync();
-
-    return Results.Created($"/celulares/{celular.Id}", celular);
-});
+}).DisableAntiforgery();
 
 app.MapPut("/celulares/{id}", async (int id, AppDbContext db, Celular celularAtualizado) =>
 {
