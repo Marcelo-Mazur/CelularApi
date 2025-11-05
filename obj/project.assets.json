@@ -1720,19 +1720,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jpmar\\.nuget\\packages\\": {}
+    "C:\\Users\\mateu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jpmar\\Documentos\\GitHub\\CelularApi\\CelularApi.csproj",
+      "projectUniqueName": "C:\\Users\\mateu\\CelularApi\\CelularApi.csproj",
       "projectName": "CelularApi",
-      "projectPath": "C:\\Users\\jpmar\\Documentos\\GitHub\\CelularApi\\CelularApi.csproj",
-      "packagesPath": "C:\\Users\\jpmar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jpmar\\Documentos\\GitHub\\CelularApi\\obj\\",
+      "projectPath": "C:\\Users\\mateu\\CelularApi\\CelularApi.csproj",
+      "packagesPath": "C:\\Users\\mateu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mateu\\CelularApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jpmar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\mateu\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -1800,7 +1800,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

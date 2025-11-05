@@ -58,9 +58,9 @@ export default function CelularSheet({ celular, onClose, fetchCelulares }) {
 
         {form.imagemUrl && !editando && (
           <img
-            src={form.imagemUrl}
+            src={form.imagemUrl.startsWith("http") ? form.imagemUrl : `http://localhost:5209${form.imagemUrl}`  }
             alt={`${form.marca} ${form.modelo}`}
-            style={{ width: "100%", borderRadius: "0.5rem", marginBottom: "1rem" }}
+            style={{ width: "25%", borderRadius: "0.5rem", marginBottom: "1rem" }}
           />
         )}
 
@@ -93,7 +93,7 @@ export default function CelularSheet({ celular, onClose, fetchCelulares }) {
                   <button onClick={() => setConfirmarExclusao(false)}>Cancelar</button>
                 </div>
               ) : (
-                <button onClick={() => setConfirmarExclusao(true)} style={{ backgroundColor: "#f87171" }}>Excluir</button>
+                <button onClick={() => setConfirmarExclusao(true)} style={{ backgroundColor: "#ec6b6bff" }}>Excluir</button>
               )}
 
               <button onClick={onClose}>Fechar</button>

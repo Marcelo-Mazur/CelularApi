@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #f9fafb;
+  background-color: #d6d6d6;
   color: #1f2937;
 }
 
@@ -20,6 +20,7 @@ h1 {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
+  font-family: 'Courier New', Courier, monospace ;
 }
 
 .search-bar {
@@ -49,6 +50,8 @@ h1 {
 }
 
 .form {
+  margin-left: 150px;
+  margin-right: 150px;
   border: 1px solid #e5e7eb;
   padding: 1rem;
   border-radius: 0.5rem;
@@ -86,8 +89,8 @@ h1 {
 
 .card {
   background-color: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
+  border: 2px solid #c0c2c7d0;
+  border-radius: 1rem;
   padding: 1rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   cursor: pointer;
@@ -117,10 +120,14 @@ h1 {
 }
 
 .sheet {
+  box-shadow: 0px 0px 21px -4px rgba(0,0,0,0.67);
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 250px;
+  border-radius: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
   background-color: white;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
@@ -135,12 +142,23 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
+.sheet input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  margin-bottom: 0.75rem;
+}
+
 .sheet p {
   margin-bottom: 0.25rem;
   font-size: 0.875rem;
 }
 
+
 .sheet button {
+  margin-left: 50px;
+  margin-right: 50px;
   margin-top: 1rem;
   background-color: #ef4444;
   color: white;
@@ -149,6 +167,7 @@ h1 {
   border-radius: 0.375rem;
   cursor: pointer;
 }
+
 
 .sheet button:hover {
   background-color: #dc2626;
