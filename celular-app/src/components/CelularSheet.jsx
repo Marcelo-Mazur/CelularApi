@@ -86,9 +86,9 @@ export default function CelularSheet({ celular, onClose, fetchCelulares }) {
             }
             alt={`${form.marca} ${form.modelo}`}
             style={{
-              width: "25%",
+              width: "50%",
               borderRadius: "0.5rem",
-              marginBottom: "1rem",
+              marginBottom: "1rem", 
             }}
           />
         )}
