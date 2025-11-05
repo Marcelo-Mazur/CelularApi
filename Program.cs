@@ -82,22 +82,38 @@ app.MapPost("/celulares/upload", async ([FromForm] CelularForm form, AppDbContex
     }
 }).DisableAntiforgery();
 
-app.MapPut("/celulares/{id}", async (int id, AppDbContext db, Celular celularAtualizado) =>
+app.MapPut("/celulares/{id}", async (int id, [FromForm] CelularForm form, AppDbContext db) =>
 {
     var celular = await db.Celulares.FindAsync(id);
-
     if (celular is null) return Results.NotFound("Celular não encontrado");
 
-    celular.Marca = celularAtualizado.Marca;
-    celular.Modelo = celularAtualizado.Modelo;
-    celular.Memoria = celularAtualizado.Memoria;
-    celular.Armazenamento = celularAtualizado.Armazenamento;
-    celular.Preco = celularAtualizado.Preco;
+    celular.Marca = form.Marca;
+    celular.Modelo = form.Modelo;
+    celular.Memoria = form.Memoria;
+    celular.Armazenamento = form.Armazenamento;
+    celular.Preco = form.Preco;
+
+    if (form.Imagem != null && form.Imagem.Length > 0)
+    {
+        Directory.CreateDirectory("wwwroot/imagens");
+
+        var fileName = Guid.NewGuid() + Path.GetExtension(form.Imagem.FileName);
+        var path = Path.Combine("wwwroot/imagens", fileName);
+        using var stream = new FileStream(path, FileMode.Create);
+        await form.Imagem.CopyToAsync(stream);
+
+        celular.ImagemUrl = $"/imagens/{fileName}";
+    }
+    else if (!string.IsNullOrWhiteSpace(form.ImagemUrl))
+    {
+        celular.ImagemUrl = form.ImagemUrl;
+    }
 
     await db.SaveChangesAsync();
 
     return Results.Ok(celular);
-});
+}).DisableAntiforgery();
+
 
 app.MapDelete("/celulares/{id}", async (int id, AppDbContext db) =>
 {
